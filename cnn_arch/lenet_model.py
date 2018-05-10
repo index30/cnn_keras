@@ -18,7 +18,10 @@ about model:
 
 output: model ... The architecture of LeNet
 """
-def build_model(CLASSES=2, IMAGE_SIZE=128, b_show=False, b_gray=False):
+def model_arch(CLASSES=2,
+               IMAGE_SIZE=128,
+               b_show=False,
+               b_gray=False):
     # Definition of model
     model = Sequential()
     if b_gray:
@@ -44,40 +47,11 @@ def build_model(CLASSES=2, IMAGE_SIZE=128, b_show=False, b_gray=False):
         model.summary()
     return model
 
-def model_compile(model,
-                  LOSS='categorical_crossentropy',
-                  OPTIMIZER='adam',
-                  METRICS=['acc']):
-    model.compile(
-        loss=LOSS,
-        optimizer=OPTIMIZER,
-        metrics=METRICS
-    )
-    return model
-
-def batch_build(CLASSES=2,
-                IMAGE_SIZE=128,
-                b_show=False,
-                b_gray=False,
-                LOSS='categorical_crossentropy',
-                OPTIMIZER='adam',
-                METRICS=['acc']):
-    model = build_model(CLASSES=CLASSES,
-                        IMAGE_SIZE=IMAGE_SIZE,
-                        b_show=b_show,
-                        b_gray=b_gray)
-    model = model_compile(model,
-                          LOSS=LOSS,
-                          OPTIMIZER=OPTIMIZER,
-                          METRICS=METRICS)
-    return model
-
-
 """build_model_immutable
 This method is similar to build_model,
 but this method return certain model
 """
-def build_model_immutable():
+def model_arch_immutable():
     # Definition of model
     model = Sequential()
     input_shape = (128, 128, 3)

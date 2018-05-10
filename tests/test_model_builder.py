@@ -12,35 +12,16 @@ from keras.utils import np_utils
 from keras.models import save_model, load_model
 
 sys.path.append(str(Path(Path.cwd().parents[0])))
-from cnn_arch import lenet_model
+from cnn_arch import model_builder, lenet_model
 
-class TestLeNet(TestCase):
-    def test_build_model(self):
-        """Check Error
-            When CLASSES has wrong arg, assert TypeError
-            When IMAGE_SIZE has wrong arg, assert ValueError
-        """
-        # test_arg is the pattern of error at arg in build_model
-        wrong_arg = [
-            ("classes", "b_show")
-        ]
-        with self.assertRaises(TypeError):
-            lenet_model.build_model(CLASSES=wrong_arg[0][0])
-        with self.assertRaises(ValueError):
-            lenet_model.build_model(IMAGE_SIZE=wrong_arg[0][1])
-
-
-    def test_build_model_immutable(self):
-        pass
-
-
+class TestModelBuilder(TestCase):
     """
     test whether training model's result and saving model's result is match
     """
     def test_model_saving(self):
         # build and compile models
         # build from lenet_model.py, build_model_immutable
-        model = lenet_model.build_model_immutable()
+        model = model_builder.build_model()
         # compile model
         model.compile(
             loss='categorical_crossentropy',
@@ -70,10 +51,7 @@ class TestLeNet(TestCase):
         os.remove(fname)
 
         out2 = new_model.predict(X[0][np.newaxis, :])
-        print(out)
-        print(out2)
         assert_allclose(out, out2, atol=1e-05)
-
 
 if __name__=="__main__":
     unittest.main()
