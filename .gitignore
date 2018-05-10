@@ -1,0 +1,8 @@
+# ignore file
+.Python
+pip-selfcheck.json
+
+# ignore directory
+bin/
+lib/
+include/
