@@ -22,3 +22,5 @@ cd "$(pwd)/cnn_keras"
 . bin/activate
 pip3 install -r requirements.txt
 pip3 list
+
+echo "Finish building environment"
