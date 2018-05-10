@@ -1,6 +1,7 @@
 # ignore file
 .Python
 pip-selfcheck.json
+.DS_Store
 
 # ignore directory
 bin/
